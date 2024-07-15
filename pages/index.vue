@@ -61,7 +61,7 @@ export default {
           if (
             e?.key == "ArrowDown" ||
             e?.deltaY > 0 ||
-            this.touchStart - 100 > this.touchEnd
+            this.touchStart - 30 > this.touchEnd
           ) {
             document.getElementById("2").scrollIntoView({
               behavior: "smooth",
@@ -74,7 +74,7 @@ export default {
           if (
             e?.key == "ArrowUp" ||
             e?.deltaY < 0 ||
-            this.touchStart < this.touchEnd - 100
+            this.touchStart < this.touchEnd - 30
           ) {
             document.getElementById("1").scrollIntoView({
               behavior: "smooth",
@@ -85,7 +85,7 @@ export default {
           if (
             e?.key == "ArrowDown" ||
             e?.deltaY > 0 ||
-            this.touchStart - 100 > this.touchEnd
+            this.touchStart - 30 > this.touchEnd
           ) {
             document.getElementById("3").scrollIntoView({
               behavior: "smooth",
@@ -98,7 +98,7 @@ export default {
           if (
             e?.key == "ArrowUp" ||
             e?.deltaY < 0 ||
-            this.touchStart < this.touchEnd - 100
+            this.touchStart < this.touchEnd - 30
           ) {
             document.getElementById("2").scrollIntoView({
               behavior: "smooth",
