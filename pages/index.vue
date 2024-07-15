@@ -33,6 +33,8 @@ export default {
       isBlur: false,
       text: "Glitch Text",
       isActive: 1,
+      touchStart: undefined,
+      touchEnd: undefined,
     };
   },
   watch: {},
@@ -44,41 +46,75 @@ export default {
     window.addEventListener("keydown", (event) => {
       this.handleScroll(event);
     });
+    window.addEventListener("touchstart", (event) => {
+      this.touchStart = event.changedTouches[0].clientY;
+    });
+    window.addEventListener("touchend", (event) => {
+      this.touchEnd = event.changedTouches[0].clientY;
+      this.handleScroll(event);
+    });
   },
   methods: {
     handleScroll(e) {
       switch (this.isActive) {
         case 1:
-          if (e?.key == "ArrowDown" || e?.deltaY > 0) {
+          if (
+            e?.key == "ArrowDown" ||
+            e?.deltaY > 0 ||
+            this.touchStart - 100 > this.touchEnd
+          ) {
             document.getElementById("2").scrollIntoView({
               behavior: "smooth",
             });
             this.isActive = 2;
+            this.handleResetTouch();
           }
           break;
         case 2:
-          if (e?.key == "ArrowUp" || e?.deltaY < 0) {
+          if (
+            e?.key == "ArrowUp" ||
+            e?.deltaY < 0 ||
+            this.touchStart < this.touchEnd - 100
+          ) {
             document.getElementById("1").scrollIntoView({
               behavior: "smooth",
             });
             this.isActive = 1;
+            this.handleResetTouch();
           }
-          if (e.key == "ArrowDown" || e?.deltaY > 0) {
+          if (
+            e?.key == "ArrowDown" ||
+            e?.deltaY > 0 ||
+            this.touchStart - 100 > this.touchEnd
+          ) {
             document.getElementById("3").scrollIntoView({
               behavior: "smooth",
             });
             this.isActive = 3;
+            this.handleResetTouch();
           }
           break;
         case 3:
-          if (e?.key == "ArrowUp" || e?.deltaY < 0) {
+          if (
+            e?.key == "ArrowUp" ||
+            e?.deltaY < 0 ||
+            this.touchStart < this.touchEnd - 100
+          ) {
             document.getElementById("2").scrollIntoView({
               behavior: "smooth",
             });
             this.isActive = 2;
+            this.handleResetTouch();
           }
           break;
+        default:
+          this.handleResetTouch();
+          break;
       }
+    },
+    handleResetTouch() {
+      this.touchStart = undefined;
+      this.touchEnd = undefined;
     },
   },
 };
@@ -95,7 +131,7 @@ export default {
 
 .glitch {
   position: relative;
-  font-size: 50px;
+  font-size: 3rem;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-weight: bold;
