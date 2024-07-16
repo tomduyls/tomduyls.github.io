@@ -127,6 +127,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url("/public/assess.gif");
+  background-size: auto 100vh;
 }
 
 .glitch {
