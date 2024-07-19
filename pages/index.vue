@@ -25,7 +25,7 @@ nuxtApp.hook("page:finish", () => {
 <style lang="scss" scoped>
 .trans-enter-active,
 .trans-leave-active {
-  transition: all 0.4s;
+  transition: ease-in 1s;
 }
 .trans-enter-from,
 .trans-leave-to {
