@@ -203,7 +203,7 @@ export default {
     }
   }
   .text-in {
-    transition: all 1s;
+    transition: ease-in 1s;
     padding: 0.2em 0.1em;
     // animation: text-in 1s ease-out;
     transform: translateY(110%);
